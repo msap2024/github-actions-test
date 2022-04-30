@@ -1,8 +1,8 @@
 name: Deployment 
 on: 
+  # Trigger the workflow on push or pull request events but only for the develop branch
   push:
-   branches:
-      - develop
+   branches: [develop]
 jobs:
   deployment:
     runs-on: ubuntu-latest
@@ -11,9 +11,9 @@ jobs:
       url: https://github.com
     steps:
       - name: deploy 
-      # - uses: actions/checkout@v3
-      # - uses: actions/setup-node@v3
-      #   with:
-      #      node-version: '14'
-      # - run: npm install -g bats
-      # - run: bats -v
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+             node-version: '14'
+      - run: npm install -g bats
+      - run: bats -v
