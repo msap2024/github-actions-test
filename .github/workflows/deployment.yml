@@ -1,8 +1,12 @@
 name: Deployment 
 on: 
-  # Trigger the workflow on push or pull request events but only for the develop branch
+  # Trigger the workflow on push or pull request events but only for the develop branch. Trigger Events.
   push:
-   branches: [develop]
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+  workflow_dispatch:
+
 jobs:
   deployment:
     runs-on: ubuntu-latest
@@ -10,7 +14,9 @@ jobs:
       name: development
       url: https://github.com
     steps:
-      
+      - uses: actions/labeler@v4
+        with:
+          repo-token: ${{secret.GITHUB_TOKEN}}
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
