@@ -17,6 +17,7 @@ jobs:
       - uses: actions/labeler@v4
         with:
           repo-token: ${{secrets.GITHUB_TOKEN}}
+      
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
